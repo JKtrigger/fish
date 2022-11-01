@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+loguru
+redis
+celery
+flower
+eventlet
+python-dotenv
