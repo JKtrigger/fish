@@ -1,3 +1,4 @@
 .idea
 .env  # for lates updates
 __pycache__
+src/__pycache__
