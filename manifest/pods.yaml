@@ -34,7 +34,7 @@ spec:
       imagePullPolicy: Never # avoid minikube
       ports:
         - containerPort: 5566
-      command: ["celery", "--broker=redis://127.0.0.1:6379/0", "-A", "main.celery_", "flower", "--port=5566"]
+      command: ["celery", "-A", "main.celery_", "flower", "--port=5566"]
 
     - name: container-worker-fish
       image: fish
