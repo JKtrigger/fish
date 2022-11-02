@@ -1,3 +1,4 @@
+```
 to launch app: 
     uvicorn src.main:app --host 0.0.0.0 --port 80
     uvicorn main:app --host 0.0.0.0 --port 80
@@ -16,3 +17,4 @@ to add src as python path:
 
 celery  -A src.main.celery_ worker -l info --pool=eventlet
 celery --broker=redis://127.0.0.1:6379/0 -A src.main.celery_ worker flower --port=5566
+```

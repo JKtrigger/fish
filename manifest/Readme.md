@@ -1,4 +1,4 @@
----
+```
 apply pods:
     - kubectl apply -f .\manifest\pods.yaml
     - kubectl describe pods fish-pods
@@ -16,4 +16,4 @@ debug pods:
 
 to avoid local storage for minikube:
      minikube image load fish
-     
+```

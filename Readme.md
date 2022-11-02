@@ -1,3 +1,4 @@
+```
 minikube launch: 
     kubectl apply -f .\manifest\pods.yaml
 
@@ -16,3 +17,4 @@ self test:
     -   via State
             docker-compose ps
             docker logs project_celery_worker_1
+```
