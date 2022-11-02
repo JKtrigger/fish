@@ -1,12 +1,17 @@
 import logging
+import os
 import time
 
 from celery import Celery
 
+# settings
+broker = os.environ.get("broker", "redis://redis:6379/0") # docker-composer value default
+backend = os.environ.get("backend", "redis://redis:6379/0")
+
 celery_ = Celery(
     __name__,
-    broker="redis://redis:6379/0",
-    backend="redis://redis:6379/0"
+    broker=broker,
+    backend=backend
 )
 
 logger = logging.getLogger(__name__)

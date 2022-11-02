@@ -1,11 +1,13 @@
 to launch app: 
     uvicorn src.main:app --host 0.0.0.0 --port 80
+    uvicorn main:app --host 0.0.0.0 --port 80
 
 to build docker: 
-    docker build -t fish --no-cache .
+    docker build -f src/Dockerfile  -t fish --no-cache .
 
 to launch docker:
     docker run --rm --name fish -d -p 80:80 fish:latest
+    docker run -it fish:latest uvicorn main:app --host 0.0.0.0 --port 80
     docker stop fish
     docker run --network host -it fish:latest bash
     

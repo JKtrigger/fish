@@ -1,8 +1,9 @@
-launch : 
+---
+launch: 
     docker-compose build --no-cache
     docker-compose up -d
     docker ps
-down : 
+down: 
     docker-compose down 
     stop docker <name>
 
@@ -12,3 +13,6 @@ self test:
     -   via State
             docker-compose ps
             docker logs project_celery_worker_1
+---
+minikube launch: 
+    
