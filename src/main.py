@@ -2,8 +2,8 @@ from socket import gethostname
 
 from fastapi import FastAPI, Request
 
-from src import settings
-from src.celery.tasks import celery_
+import settings
+from celery_.tasks import celery_
 
 app = FastAPI()
 
