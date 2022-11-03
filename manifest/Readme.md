@@ -1,4 +1,19 @@
 ```
+apply service: 
+    - kubectl apply -f .\manifest\service.yaml
+    - kubectl get svc
+    - minikube service k8s-service --url
+    >> http://127.0.0.1:62820
+    >> http://127.0.0.1:6282
+delete service:
+    - kubectl delete -f .\manifest\service.yaml
+
+apply deployment:
+    - kubectl apply -f .\manifest\deployment.yaml
+    - kubectl get deploy
+delete deployment:
+    - kubectl delete -f .\manifest\deployment.yaml
+
 apply pods:
     - kubectl apply -f .\manifest\pods.yaml
     - kubectl describe pods fish-pods

@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-service
+  labels:
+    project: k8s-service-app
+    stage: minikube
+spec:
+  type: NodePort # minikube
+  selector:
+    project: fastapi-deployment-app
+    stage: minikube
+  ports:
+    - name: k8s-service-app-listener
+      protocol: TCP
+      port: 80
+      targetPort: 80
+    - name: k8s-service-flower-listener
+      protocol: TCP
+      port: 5566
+      targetPort: 5566

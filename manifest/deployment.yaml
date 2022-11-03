@@ -1,0 +1,56 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: fastapi-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      project: fastapi-deployment-app
+      stage: minikube
+
+  template:
+    metadata:
+      labels:
+        project: fastapi-deployment-app
+        stage: minikube
+    spec:
+      containers:
+      - name: fish-container
+        image: fish
+        imagePullPolicy: Never # avoid minikube
+        env:
+          - name: broker
+            value: "redis://127.0.0.1:6379/0"
+          - name: backend
+            value: "redis://127.0.0.1:6379/0"
+        command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
+        ports:
+        - containerPort: 80
+
+      - name: redis
+        image: redis:latest
+        ports:
+          - containerPort: 6379
+
+      - name: container-worker-fish
+        image: fish
+        env:
+          - name: broker
+            value: "redis://127.0.0.1:6379/0"
+          - name: backend
+            value: "redis://127.0.0.1:6379/0"
+        imagePullPolicy: Never # avoid minikube
+        command: [ "celery", "--broker=redis://127.0.0.1:6379/0", "-A", "main.celery_", "worker", "-l", "info", "--pool=eventlet" ]
+
+      - name: container-flower-fish
+        image: fish
+        env:
+          - name: broker
+            value: "redis://127.0.0.1:6379/0"
+          - name: backend
+            value: "redis://127.0.0.1:6379/0"
+        imagePullPolicy: Never # avoid minikube
+        ports:
+          - containerPort: 5566
+        command: [ "celery", "-A", "main.celery_", "flower", "--port=5566"]
