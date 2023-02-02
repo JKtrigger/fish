@@ -1,0 +1,22 @@
+name: Test-in
+
+on:
+  push:
+    branches: [patch, master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    
+    steps:
+    - uses: actions/checkout@v2
+    - run: ls
+    - run: docker-compose ps
+    - run: docker-compose -f docker-compose.yaml build --no-cache
+    - run: docker-compose up -d
+    - run: docker-compose ps
+    - run: docker logs fish_web_1
+    - run: curl -X GET http://127.0.0.1/
