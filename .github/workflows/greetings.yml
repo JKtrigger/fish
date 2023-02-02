@@ -1,0 +1,18 @@
+name: Tesrind 
+
+on:
+  push:
+    branches: [patch, master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+    - uses: isbang/compose-action@v1.4.1
+    - uses: actions/checkout@v3
+      with:
+        compose-file: "./docker/docker-compose.yml"
+    - run: curl -X GET http://127.0.0.1/
