@@ -1,4 +1,4 @@
-name: Tesrind 
+name: Test-in
 
 on:
   push:
@@ -11,8 +11,5 @@ jobs:
       issues: write
       pull-requests: write
     steps:
-    - uses: isbang/compose-action@v1.4.1
-    - uses: actions/checkout@v3
-      with:
-        compose-file: "./docker-compose.yaml"
+    - run: docker-compose -f docker-compose.yaml build --no-cache
     - run: curl -X GET http://127.0.0.1/
