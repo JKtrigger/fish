@@ -11,5 +11,7 @@ jobs:
       issues: write
       pull-requests: write
     steps:
+    - run: ls
     - run: docker-compose -f docker-compose.yaml build --no-cache
+    - run: docker-compose up -d
     - run: curl -X GET http://127.0.0.1/
