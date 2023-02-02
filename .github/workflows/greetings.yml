@@ -10,7 +10,9 @@ jobs:
     permissions:
       issues: write
       pull-requests: write
+    
     steps:
+    - uses: actions/checkout@v2
     - run: ls
     - run: docker-compose -f docker-compose.yaml build --no-cache
     - run: docker-compose up -d
