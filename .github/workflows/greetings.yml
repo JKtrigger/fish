@@ -14,6 +14,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: ls
+    - run: docker-compose ps
     - run: docker-compose -f docker-compose.yaml build --no-cache
     - run: docker-compose up -d
+    - run: docker-compose ps
+    - run: docker logs project_celery_worker_1
     - run: curl -X GET http://127.0.0.1/
