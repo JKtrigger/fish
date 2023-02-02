@@ -14,5 +14,5 @@ jobs:
     - uses: isbang/compose-action@v1.4.1
     - uses: actions/checkout@v3
       with:
-        compose-file: "./docker/docker-compose.yml"
+        compose-file: "./docker-compose.yaml"
     - run: curl -X GET http://127.0.0.1/
